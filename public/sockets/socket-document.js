@@ -8,9 +8,10 @@ export function emitChat(chat, name){
 }
 
 export function selectionDocument(name){
-    socket.emit("selection:document", name);
+    socket.emit("selection:document", name, (text) => {
+        updateChat(text)
+    });
 }
-
 
 socket.on("chat:message-client", message => {
     updateChat(message)
