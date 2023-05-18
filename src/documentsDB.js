@@ -2,6 +2,11 @@ import {
     DocumentCollection
 } from "./config/dbConnect.js";
 
+export function getDocuments(){
+  const documents = DocumentCollection.find().toArray();
+  return documents
+}
+
 export function searchDocument(name) {
   const document = DocumentCollection.findOne({
     name,
