@@ -7,6 +7,14 @@ export function getDocuments(){
   return documents
 }
 
+export function addDocument(name){
+  const result = DocumentCollection.insertOne({
+    name,
+    message: ''
+  })
+  return result
+}
+
 export function searchDocument(name) {
   const document = DocumentCollection.findOne({
     name,
@@ -26,4 +34,11 @@ export function updateDocument(name, message) {
     }
   );
   return update;
+}
+
+export function deleteDocument(name){
+  const result = DocumentCollection.deleteOne({
+    name
+  })
+  return result;
 }

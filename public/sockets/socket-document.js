@@ -1,4 +1,4 @@
-import { updateChat } from "../document.js";
+import { redirect, updateChat } from "../document.js";
 
 const socket = io()
 
@@ -13,6 +13,15 @@ export function selectionDocument(name){
     });
 }
 
+
 socket.on("chat:message-client", message => {
     updateChat(message)
 })
+
+export function emitDeleteDocument(name){
+    socket.emit("doc:delete", name)
+}
+
+socket.on("doc:delete-success", (name) => {
+  redirect(name);
+});
